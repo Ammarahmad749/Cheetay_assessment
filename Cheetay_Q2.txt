@@ -1,0 +1,22 @@
+bool compare(string a,string b)
+{
+    string ab = a+b;
+    string ba = b+a;
+		if(a>b)
+            return true;
+        else if(a<b)
+            return false;
+    
+}
+
+string printLargest(int arr[n]) {
+	   
+	    sort(arr.begin(), arr.end(), compare);//custom type sort
+
+	    string final_result;
+	    for (int i = 0; i < arr.size(); i++) {
+	    	final_result=final_result+arr[i];
+		}
+
+	    return final_result;
+	}

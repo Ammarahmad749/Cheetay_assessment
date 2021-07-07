@@ -1,0 +1,40 @@
+string LexicographicallyMinimum(string str){
+		    int MAX = 26;
+		    int x, y = -1;
+			int ord[MAX];
+			
+            for (int i = 0; i < MAX; i++)
+                ord[i] = -1;
+            
+			for(int i = 0; i < str.length(); i++){
+				if(ord[str[i] - 'a'] == -1)
+					ord[str[i] - 'a'] = i;
+			}
+			
+			for(int i = 0; i < str.length()-1; i++){
+				x = i;
+				bool flag = true;
+				for(int j = 0; j < MAX; j++){
+					if(ord[j] > ord[str[i] - 'a'] and char(j+'a') < str[i]){
+						y = j;
+						flag = false;
+						break;
+					}
+				}
+				if(!flag)
+					break;
+			}
+			if(y == -1)
+				return str;
+				
+			string resultant = "";
+			for(int i = 0; i < str.length(); i++){
+				if(str[i] - 'a' == y)
+					resultant += str[x];
+				else if(str[i]  == str[x])
+					resultant += char(y + 'a');
+				else
+					resultant += str[i];
+			}
+			return resultant;
+		}

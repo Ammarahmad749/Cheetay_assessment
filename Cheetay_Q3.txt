@@ -1,0 +1,32 @@
+int p[N];
+string getstring(string &s)
+      {
+            string temp;
+            temp.push_back('#');
+            for(int i = 0; i < s.length(); i ++ ) {
+                  temp.push_back(s[i]);
+                  temp.push_back('#');
+            }
+            return temp;
+
+      }
+string longestPalindrome(string s) {
+        string temp = getstring(s);
+        int r= 0, c = 0;
+        int max = 0, pos;
+        for(int i = 0 ; i < temp.length() ; i ++ ) {
+            int num = 2*c-i;
+            p[i] = (r>i) ? min(r-i,P[num]) : 0;
+            while((i + 1 + p[i]) < temp.length() && temp[i + 1 + p[i]] == temp[i-1-p[i]] ) 
+            p[i] ++;
+            if(i+p[i] > p ) {
+                  c = i;
+                  r = i + p[i];
+            }
+            max = max(max, p[i]);
+            if(p[i] == max) {
+                  pos = i;
+            }
+        }
+        return s.substr(pos + 1 - max)/2,max);
+    }

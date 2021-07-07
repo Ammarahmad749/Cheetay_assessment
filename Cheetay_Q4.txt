@@ -1,0 +1,40 @@
+struct schedule {
+	int start;
+	int end;	
+};
+bool check(struct schedule x, schedule y)
+{
+	if(x.end < y.end)
+	{
+		return true;
+	}
+	else {
+	return false;}
+}
+void maxMeeting(int s[], int f[], int n)
+{
+	int count=0;
+	struct schedule meeting[n];
+	for (int i = 0; i < n; i++)
+	{
+		meeting[i].start = s[i];
+		meeting[i].end = f[i];		
+	}
+	sort(meeting, meeting+n, check);
+	int end_time = meeting[0].end;
+	for (int i = 0; i < n; i++) {
+		if(i==0)
+		{
+			count++;
+			continue;
+		}
+		else if (meeting[i].start >= end_time)
+		{
+			count++;
+			cout<<endl<<i;
+			end_time = meeting[i].end;
+		}
+	}
+
+	cout<<count;
+}
